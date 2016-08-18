@@ -120,33 +120,36 @@ class World {
 		}
 		 
 	}
+	private $ranges;
+	private $rangeCount;
 	public function getFirstAvailableRange() {
-		static $ranges;
-		static $rangeCount;
-		if(!isset($ranges)) {
-			$ranges = [];
+		
+		if(is_null($this->ranges)) {
+			$this->ranges = [];
 			echo "Building available range list\n";
 			foreach($this->blockslist as $x => $ylist) {
 				foreach($ylist as $y => $zlist) {
 					foreach($zlist as $z => $block) {
 						$block = $this->getBlock($x,$y,$z);
 						if($block && !$block->isCheckedOut()) {
-							$ranges[] = ['x'=>$x,'y'=>$y,'z'=>$z];
+							$this->ranges[] = ['x'=>$x,'y'=>$y,'z'=>$z];
 						}
 					}
 				}
 			}
-			$rangeCount = count($ranges);
-			echo "Available ranges: $rangeCount\n";
+			$this->rangeCount = count($this->ranges);
+			echo "Available ranges: {$this->rangeCount}\n";
 		}
 		
-		if($rangeCount > 0) {
-			while($rangeCount > 0) {
-				$elem = $ranges[--$rangeCount];
+		if($this->rangeCount > 0) {
+			while($this->rangeCount > 0) {
+				$elem = $this->ranges[--$this->rangeCount];
 				$block = $this->getBlock($elem['x'],$elem['y'],$elem['z']);
 				if($block && !$block->isCheckedOut()) {
 					$block->checkout();
-					echo "Remaining ranges: $rangeCount\n";
+					if($this->rangeCount % 100 === 0) {
+						echo "Remaining ranges: {$this->rangeCount}\n";
+					}
 					return $block;
 				}
 			}

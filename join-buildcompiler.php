@@ -12,13 +12,14 @@ function __autoload($className) {
  * Set to false to disable speed test to see how fast it compiles
  * @var int set to how many times your files need to be duplicated
  */
-$SPEEDTEST = 4;
+$SPEEDTEST = 5;
 /**
  * By how much should the blocks be offset for the speedtest to avoid merging
  * @var unknown
  */
-$SPEEDTESTOFFSET = 25;
+$SPEEDTESTOFFSET = 1;
 
+$INDIVIDUALRANGETEST = true;
 /**
  * Add blocks you wish to exclude to the blacklist
  * @var BlackList
@@ -106,7 +107,7 @@ unset($files);
 $master->setBlackList($blacklist);
 
 $worldsList = [];
-
+$ranges = [];
 
 $seen = [];
 $testoffset = 0;
@@ -133,6 +134,26 @@ foreach($filelist as $file) {
    echo "Removing surplus airblocks with direct sky access\n";
    $cnt = $world->checkAllAirBlocksForSkyAccess();
    echo "Removed $cnt airblocks with direct sky or void access\n";
+   if($INDIVIDUALRANGETEST) {
+	   	$totalBlocksHarvested = 0;
+	   	while($loc = $world->getFirstAvailableRange()) {
+	   	
+	   		if($range = $loc->findBiggestRange($world)) {
+	   	
+	   			$totalBlocksHarvested += $range->getCubicSize();
+	   			$rangeloc = new RangeLocation();
+	   			$rangeloc->fill(['startx'=>$range->startx,'starty'=>$range->starty,'startz'=>$range->startz,'endx'=>$range->endx,'endy'=>$range->endy,'endz'=>$range->endz,'block'=>$loc->block]);
+	   			$world->deleteBlocks($range);
+	   			$ranges[] = $rangeloc;
+	   		}
+	   		gc_collect_cycles();
+	   		printRAMUsage();
+	   	
+	   	}
+	   	
+	   	echo "Range checks completed, total of $totalBlocksHarvested blocks were put into ranges\n";
+	   	printRAMUsage();
+   }
    $worldsList[] = $world;
    gc_collect_cycles();
    printRAMUsage();
@@ -149,7 +170,7 @@ foreach($worldsList as $item) {
 unset($worldsList);
 gc_collect_cycles();
 
-$ranges = [];
+
 echo "Checking ranges\n";
 
 $totalBlocksHarvested = 0;
@@ -176,7 +197,7 @@ echo "Preparing final save\n";
 unset($world);
 gc_collect_cycles();
 printRAMUsage();
-
+echo "Adding total of ".count($ranges)." block ranges\n";
 foreach($ranges as $range) {
 $master->addToLocationList($range);
 }
