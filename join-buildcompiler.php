@@ -159,6 +159,9 @@ foreach($filelist as $file) {
    printRAMUsage();
    $testoffset += $SPEEDTESTOFFSET;
 }
+echo "===========================================================================";
+echo "                         MERGING ALL FILES";
+echo "===========================================================================";
 $world = new World();
 $world->setMaster($master);
 foreach($worldsList as $item) {
@@ -169,9 +172,11 @@ foreach($worldsList as $item) {
 }
 unset($worldsList);
 gc_collect_cycles();
-
-
-echo "Checking ranges\n";
+printRAMUsage();
+echo "";
+echo "===========================================================================";
+echo "                         CHECKING RANGES ON MAIN";
+echo "===========================================================================";
 
 $totalBlocksHarvested = 0;
 while($loc = $world->getFirstAvailableRange()) {
