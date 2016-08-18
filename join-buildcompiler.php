@@ -8,6 +8,21 @@ function __autoload($className) {
     }
 }
 
+/**
+ * Set to false to disable speed test to see how fast it compiles
+ * @var int set to how many times your files need to be duplicated
+ */
+$SPEEDTEST = 4;
+/**
+ * By how much should the blocks be offset for the speedtest to avoid merging
+ * @var unknown
+ */
+$SPEEDTESTOFFSET = 25;
+
+/**
+ * Add blocks you wish to exclude to the blacklist
+ * @var BlackList
+ */
 $blacklist = new BlackList();
 $blacklist->addToBlackList('minecraft','dirt','0'); 
 $blacklist->addToBlackList('minecraft','air','0');
@@ -18,7 +33,9 @@ $blacklist->addToBlackList('minecraft','tallgrass','1');
 
 $master = new BlockMaster();
 
-
+/**
+ * Add blocks you wish to transform to other blocks here
+ */
 $master->addTranslation(new Block('minecraft',"leaves","12"),
                 new Block(["blockid"=> "block_magicleaves",
 	            "metadata"=> 0,
@@ -76,23 +93,12 @@ foreach($files as $file) {
 		$filelist[] = $input.DIRECTORY_SEPARATOR.$file;
 	}
 }
-foreach($filelist as $file) {
-	$filelist[] = $file;
-}
-foreach($filelist as $file) {
-	$filelist[] = $file;
-}
-foreach($filelist as $file) {
-	$filelist[] = $file;
-}
-foreach($filelist as $file) {
-	$filelist[] = $file;
-}
-foreach($filelist as $file) {
-	$filelist[] = $file;
-}
-foreach($filelist as $file) {
-	$filelist[] = $file;
+if($SPEEDTEST) {
+	for($c=0;$c<$SPEEDTEST;$c++) {
+		foreach($filelist as $file) {
+			$filelist[] = $file;
+		}
+	}
 }
 unset($files);
 
@@ -103,6 +109,7 @@ $worldsList = [];
 
 
 $seen = [];
+$testoffset = 0;
 foreach($filelist as $file) {
    $world = new World();
    $world->setMaster($master);
@@ -116,7 +123,9 @@ foreach($filelist as $file) {
    	   }
    }
    foreach($content->locations as $item) {
-       $world->addLocation(new Location($item));
+   		$loc = new Location($item);
+   		$loc->x += $SPEEDTEST ? $testoffset:0;
+       $world->addLocation($loc);
    }
    unset($content);
    printRAMUsage();
@@ -127,6 +136,7 @@ foreach($filelist as $file) {
    $worldsList[] = $world;
    gc_collect_cycles();
    printRAMUsage();
+   $testoffset += $SPEEDTESTOFFSET;
 }
 $world = new World();
 $world->setMaster($master);

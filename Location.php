@@ -2,8 +2,6 @@
 class Location extends Fillable {
 	public function __construct($what) {
 		parent::__construct($what);
-		$this->x += rand(0,100);
-		$this->z += rand(0,100);
 		return $this;
 	}
 	 
