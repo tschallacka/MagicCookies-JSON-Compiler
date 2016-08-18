@@ -7,12 +7,20 @@ function __autoload($className) {
         require $filename;
     }
 }
+use Blacklist;
+use Block;
+use BlockMaster;
+use BoundingBox;
+use Fillable;
+use Location;
+use RangeLocation;
+use World;
 
 /**
  * Set to false to disable speed test to see how fast it compiles
  * @var int set to how many times your files need to be duplicated
  */
-$SPEEDTEST = 5;
+$SPEEDTEST = 0;
 /**
  * By how much should the blocks be offset for the speedtest to avoid merging
  * @var unknown
@@ -111,6 +119,8 @@ $ranges = [];
 
 $seen = [];
 $testoffset = 0;
+$count = 0;
+$length = count($filelist);
 foreach($filelist as $file) {
    $world = new World();
    $world->setMaster($master);
@@ -123,11 +133,13 @@ foreach($filelist as $file) {
 	   		$seen[] = $id;
    	   }
    }
-   foreach($content->locations as $item) {
-   		$loc = new Location($item);
-   		$loc->x += $SPEEDTEST ? $testoffset:0;
-       $world->addLocation($loc);
-   }
+   if(isset($content->locations)) {
+       foreach($content->locations as $item) {
+       		$loc = new Location($item);
+       		$loc->x += $SPEEDTEST ? $testoffset:0;
+           $world->addLocation($loc);
+       }
+    }
    unset($content);
    printRAMUsage();
    
@@ -158,6 +170,8 @@ foreach($filelist as $file) {
    gc_collect_cycles();
    printRAMUsage();
    $testoffset += $SPEEDTESTOFFSET;
+   $count++;
+   echo "Finished file $count of $length\n";
 }
 echo "===========================================================================";
 echo "                         MERGING ALL FILES";
