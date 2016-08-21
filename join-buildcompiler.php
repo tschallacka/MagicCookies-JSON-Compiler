@@ -95,33 +95,33 @@ $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','0'),
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','1'),
                         new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','2'),
-                        new Block('thaumcraft','log','2'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','3'),
-                        new Block('thaumcraft','log','3'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','4'),
-                        new Block('thaumcraft','log','4'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','5'),
-                        new Block('thaumcraft','log','5'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','6'),
-                        new Block('thaumcraft','log','6'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','7'),
-                        new Block('thaumcraft','log','7'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','8'),
-                        new Block('thaumcraft','log','8'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','9'),
-                        new Block('thaumcraft','log','9'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','10'),
-                        new Block('thaumcraft','log','10'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','11'),
-                        new Block('thaumcraft','log','11'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','12'),
-                        new Block('thaumcraft','log','12'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','13'),
-                        new Block('thaumcraft','log','13'));
+                        new Block('thaumcraft','log','1'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','14'),
-                        new Block('thaumcraft','log','14'));
+                        new Block('thaumcraft','log','0'));
 $master->addTranslation(new Block('Thaumcraft','blockMagicalLog','15'),
-                        new Block('thaumcraft','log','15'));
+                        new Block('thaumcraft','log','1'));
 
 
 $master->addTranslation(new Block('Thaumcraft','blockMetalDevice','8'),
