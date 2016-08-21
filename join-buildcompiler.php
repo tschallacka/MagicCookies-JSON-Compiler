@@ -7,14 +7,14 @@ function __autoload($className) {
         require $filename;
     }
 }
-use Blacklist;
-use Block;
-use BlockMaster;
-use BoundingBox;
-use Fillable;
-use Location;
-use RangeLocation;
-use World;
+require_once 'Blacklist.php';
+require_once 'Block.php';
+require_once 'BlockMaster.php';
+require_once 'BoundingBox.php';
+require_once 'Fillable.php';
+require_once 'Location.php';
+require_once 'RangeLocation.php';
+require_once 'World.php';
 
 /**
  * Set to false to disable speed test to see how fast it compiles
@@ -33,11 +33,14 @@ $INDIVIDUALRANGETEST = true;
  * @var BlackList
  */
 $blacklist = new BlackList();
-$blacklist->addToBlackList('minecraft','dirt','0'); 
+for($c=0;$c<16;$c++) {
+$blacklist->addToBlackList('minecraft','air',''.$c);
+}
+/*$blacklist->addToBlackList('minecraft','dirt','0'); 
 $blacklist->addToBlackList('minecraft','air','0');
 $blacklist->addToBlackList('minecraft','grass','0');
 $blacklist->addToBlackList('minecraft','tallgrass','0');
-$blacklist->addToBlackList('minecraft','tallgrass','1');
+$blacklist->addToBlackList('minecraft','tallgrass','1');*/
 
 
 $master = new BlockMaster();
@@ -45,6 +48,157 @@ $master = new BlockMaster();
 /**
  * Add blocks you wish to transform to other blocks here
  */
+$master->addTranslation(new Block('Thaumcraft','blockWoodenDevice','0'),
+                        new Block('thaumcraft','bellows','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockMetalDevice','0'),
+                        new Block('thaumcraft','crucible','0'));
+
+$master->addTranslation(new Block('MagicCookie','blockOldDarkStoneStairs','1'),
+                        new Block('magiccookies','blockstairs_darkbrick','1'));
+
+$master->addTranslation(new Block('MagicCookie','blockOldDarkStoneStairs','2'),
+                        new Block('magiccookies','blockstairs_darkbrick','2'));
+
+$master->addTranslation(new Block('Thaumcraft','blockMetalDevice','2'),
+                        new Block('thaumcraft','arcane_workbench','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockAiry','1'),
+                        new Block('thaumcraft','nitor','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','0'),
+                        new Block('thaumcraft','tube','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','1'),
+                        new Block('thaumcraft','tube','1'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','2'),
+                        new Block('thaumcraft','tube','2'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','3'),
+                        new Block('thaumcraft','tube','3'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','4'),
+                        new Block('thaumcraft','tube','4'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTube','5'),
+                        new Block('thaumcraft','tube','5'));
+
+//$master->addTranslation(new Block('','',''),
+//                        new Block('thaumcraft','crystallizer','0'));
+
+//$master->addTranslation(new Block('Thaumcraft','','5'),
+//                        new Block('thaumcraft','centrifuge','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','0'),
+                        new Block('thaumcraft','log','0'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','1'),
+                        new Block('thaumcraft','log','1'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','2'),
+                        new Block('thaumcraft','log','2'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','3'),
+                        new Block('thaumcraft','log','3'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','4'),
+                        new Block('thaumcraft','log','4'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','5'),
+                        new Block('thaumcraft','log','5'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','6'),
+                        new Block('thaumcraft','log','6'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','7'),
+                        new Block('thaumcraft','log','7'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','8'),
+                        new Block('thaumcraft','log','8'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','9'),
+                        new Block('thaumcraft','log','9'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','10'),
+                        new Block('thaumcraft','log','10'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','11'),
+                        new Block('thaumcraft','log','11'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','12'),
+                        new Block('thaumcraft','log','12'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','13'),
+                        new Block('thaumcraft','log','13'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','14'),
+                        new Block('thaumcraft','log','14'));
+$master->addTranslation(new Block('Thaumcraft','blockMagicalLog','15'),
+                        new Block('thaumcraft','log','15'));
+
+
+$master->addTranslation(new Block('Thaumcraft','blockMetalDevice','8'),
+                        new Block('thaumcraft','lamp_growth','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTable','15'),
+                        new Block('thaumcraft','node_stabilizer','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockMirror','0'),
+                        new Block('thaumcraft','mirror','0'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','1'),
+                        new Block('thaumcraft','mirror','1'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','2'),
+                        new Block('thaumcraft','mirror','2'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','3'),
+                        new Block('thaumcraft','mirror','3'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','4'),
+                        new Block('thaumcraft','mirror','4'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','5'),
+                        new Block('thaumcraft','mirror','5'));
+
+$master->addTranslation(new Block('Thaumcraft','blockMirror','6'),
+                        new Block('thaumcraft','mirror_essentia','0'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','7'),
+                        new Block('thaumcraft','mirror_essentia','1'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','8'),
+                        new Block('thaumcraft','mirror_essentia','2'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','9'),
+                        new Block('thaumcraft','mirror_essentia','3'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','10'),
+                        new Block('thaumcraft','mirror_essentia','4'));
+$master->addTranslation(new Block('Thaumcraft','blockMirror','11'),
+                        new Block('thaumcraft','mirror_essentia','5'));
+
+
+$master->addTranslation(new Block('Thaumcraft','blockMetalDevice','8'),
+                        new Block('thaumcraft','lamp_fertility','0'));
+
+
+$master->addTranslation(new Block('Thaumcraft','blockMetalDevice','2'),
+                        new Block('thaumcraft','arcane_workbench_charger','0'));
+
+$master->addTranslation(new Block('Thaumcraft','blockTable','0'),
+                        new Block('thaumcraft','research_table','0'));
+$master->addTranslation(new Block('Thaumcraft','blockTable','1'),
+                        new Block('thaumcraft','research_table','1'));
+$master->addTranslation(new Block('Thaumcraft','blockTable','2'),
+                        new Block('thaumcraft','research_table','2'));
+$master->addTranslation(new Block('Thaumcraft','blockTable','3' ),
+                        new Block('thaumcraft','research_table','3'));
+$master->addTranslation(new Block('Thaumcraft','blockTable','4' ),
+                        new Block('thaumcraft','research_table','4'));
+$master->addTranslation(new Block('Thaumcraft','blockTable','5' ),
+                        new Block('thaumcraft','research_table','5'));
+
+for($c=0;$c<16;$c++) {
+    $master->addTranslation(new Block('magiccookies','blockDarkStone',"$c"),
+                        new Block('magiccookies','block_darkstone',"$c"));
+}
+$master->addTranslation(new Block('Thaumcraft','blockJar','0' ),
+                        new Block('thaumcraft','jar','0'));
+$master->addTranslation(new Block('Thaumcraft','blockJar','1' ),
+                        new Block('thaumcraft','jar','1'));
+$master->addTranslation(new Block('Thaumcraft','blockJar','2' ),
+                        new Block('thaumcraft','jar','2'));
+$master->addTranslation(new Block('Thaumcraft','blockJar','3' ),
+                        new Block('thaumcraft','jar','3'));
+
+//$master->addTranslation(new Block('Thaumcraft','blockMagicPlank','9'),
+//                        new Block('thaumcraft','plank','0'));
+
+//$master->addTranslation(new Block('Thaumcraft','blockMagicPlank','9'),
+//                        new Block('thaumcraft','plank','1'));
+
+$master->addTranslation(new Block('','',''),
+                        new Block('','',''));
+/*
 $master->addTranslation(new Block('minecraft',"leaves","12"),
                 new Block(["blockid"=> "block_magicleaves",
 	            "metadata"=> 0,
@@ -72,7 +226,7 @@ $master->addTranslation(new Block('minecraft','log','4'),
 	        	    "modid"=> "magiccookies"
 	            ])
                 );
-
+*/
 /**
  * ============================================================================================
  * END OF USER INPUT! NO TOUCHY BELOW!
